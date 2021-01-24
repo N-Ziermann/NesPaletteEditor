@@ -17,10 +17,6 @@ console.log(COLORS)
 function App() {
   return (
     <div className="App">
-      
-      <a id="link" download={"pal.bin"} style={{visibility: "hidden"}}/>
-      <button onClick={setDownloadLinkForPalette}>Download pal.bin</button>
-      <br/>
       <div style={{display:"inline"}}>
         {
           Object.keys(COLORS).map((colorValue)=>{
@@ -31,11 +27,15 @@ function App() {
               display: "inline-block",
               border:"solid",
               margin:5,
-              
-            }}/>)
+              cursor:"pointer"
+            }}></div>)
           })
         }
       </div>
+      <br/>
+      <a id="link" download={"pal.bin"} style={{visibility: "hidden"}}/>
+      <button onClick={setDownloadLinkForPalette}>Download pal.bin</button>
+      
     </div>
   );
 }
