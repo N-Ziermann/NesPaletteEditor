@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <a id="link" download="pal.bin" style="visibility: hidden;"></a>
+        <button onclick="setDownloadLinkForPalette()">Download pal.bin</button>
+        <script>
+            var arr = [
+                String.fromCharCode(1), 
+                String.fromCharCode(10), 
+                String.fromCharCode(95)
+            ]
+            
+            
+            function setDownloadLinkForPalette(){
+                var blob = new Blob(arr, {type: 'application/octet-binary'});
+                var url = URL.createObjectURL(blob);
+                document.getElementById("link").href = url
+                document.getElementById("link").click()
+            }
+        </script>
+    </body>
+</html>
