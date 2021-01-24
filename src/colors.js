@@ -26,7 +26,6 @@ const COLORS = {    // some values missing because there are multiple identical 
     "077704": String.fromCharCode(26),
     "00793d": String.fromCharCode(27),
     "00727d": String.fromCharCode(28),
-    "fefeff": String.fromCharCode(32),
     "5db3ff": String.fromCharCode(33),
     "8fa1ff": String.fromCharCode(34),
     "c890ff": String.fromCharCode(35),
