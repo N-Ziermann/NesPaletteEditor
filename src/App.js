@@ -43,6 +43,7 @@ class App extends React.Component {
       ],
       selectedIndex:0
     }
+
     this.setDownloadLinkForPalette = this.setDownloadLinkForPalette.bind(this)
   }
 
@@ -79,15 +80,9 @@ class App extends React.Component {
         <div style={{display:"inline"}}>
           {
             Object.keys(COLORS).map((colorValue)=>{
-              return (<div style={{
-                width:60, 
-                height:60, 
-                backgroundColor:("#"+colorValue), 
-                display: "inline-block",
-                border:"solid",
-                margin:5,
-                cursor:"pointer",
-                borderRadius:5
+              return (
+              <div className="color" style={{
+                backgroundColor:("#"+colorValue)
               }} onClick={()=>{this.selectColor(colorValue)}}></div>)
             })
           }
