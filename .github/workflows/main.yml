@@ -36,7 +36,7 @@ jobs:
         run: docker build . --file Dockerfile --tag ziermann/nes-palette-editor:${{steps.version.outputs.tag}}
       
       - name: Push the tagged Docker image
-              run: docker push ziermann/nes-palette-editor:${{steps.version.outputs.tag}}
+        run: docker push ziermann/nes-palette-editor:${{steps.version.outputs.tag}}
       
       - name: Build the latest Docker image
         run: docker build . --file Dockerfile --tag ziermann/nes-palette-editor:latest
