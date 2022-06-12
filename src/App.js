@@ -51,8 +51,10 @@ class App extends React.Component {
     var binary = this.state.selected.map(item=>COLORS[item])
     var blob = new Blob(binary, {type: 'application/octet-binary'});
     var url = URL.createObjectURL(blob);
-    document.getElementById("link").href = url
-    document.getElementById("link").click()
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = "pal.bin";
+    link.click()
   }
   
   selectColor(color){
@@ -104,15 +106,17 @@ class App extends React.Component {
                     backgroundColor:("#"+value),
                     cursor:"pointer",
                     borderRadius:5,
-                    transform: (this.state.selectedIndex == index ? "scale(1.05)" : "scale(1)"),
-                    marginLeft: index % 4 == 0 ? 25 : 5
+                    transform: (this.state.selectedIndex === index ? "scale(1.05)" : "scale(1)"),
+                    marginLeft: index % 4 === 0 ? 25 : 5
                   }
                 } 
                 id={index} 
                 key={index}
                 onClick={()=>{this.setSelectedIndex(index)}}
                 />
-            }})
+            }
+            return null;
+          })
           }
         </div>
         <br/>
@@ -131,19 +135,20 @@ class App extends React.Component {
                     backgroundColor:("#"+value),
                     cursor:"pointer",
                     borderRadius:5,
-                    transform: (this.state.selectedIndex == index ? "scale(1.05)" : "scale(1)"),
-                    marginLeft: index % 4 == 0 ? 25 : 5
+                    transform: (this.state.selectedIndex === index ? "scale(1.05)" : "scale(1)"),
+                    marginLeft: index % 4 === 0 ? 25 : 5
                   }
                 } 
                 id={index} 
                 key={index}
                 onClick={()=>{this.setSelectedIndex(index)}}
                 />
-            }})
+            }
+            return null;
+          })
           }
         </div>
         <br/>
-        <a id="link" download={"pal.bin"} style={{visibility: "hidden"}}/>
         <br/>
         <button onClick={this.setDownloadLinkForPalette} style={{padding:10}}><h4 style={{margin:5}}>Download Current Palette</h4></button>
       </div>
