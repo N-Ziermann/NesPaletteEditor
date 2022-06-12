@@ -12,12 +12,28 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 14
-          
-#      - name: Login to DockerHub Registry
-#        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
+
+#      - name: Get the version
+#        id: vars
+#        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+      
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+#      - name: Build the tagged Docker image
+#        run: docker build . --file Dockerfile --tag ziermann/nes-palette-editor:${{steps.vars.outputs.tag}}
+#      
+#      - name: Push the tagged Docker image
+#        run: docker push ziermann/nes-palette-editor:${{steps.vars.outputs.tag}}
+      
+      - name: Build the latest Docker image
+        run: docker build . --file Dockerfile --tag ziermann/nes-palette-editor:latest
+      
+      - name: Push the latest Docker image
+        run: docker push ziermann/nes-palette-editor:latest
