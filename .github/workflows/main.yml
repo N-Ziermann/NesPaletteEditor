@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 14
+          registry-url: https://registry.npmjs.org/
 
       - name: setup git config
         run: |
@@ -33,3 +34,8 @@ jobs:
 
       - name: Push new version
         run: git push
+
+      - name: Publish on NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
