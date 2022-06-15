@@ -1,11 +1,11 @@
 name: CI
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "component-lib" ]
   workflow_dispatch:
 
 jobs:
-  build:
+  NPM:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,11 +21,11 @@ jobs:
       - name: Dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
-
       - name: Increase version
         run: npm version patch
+
+      - name: Build
+        run: npm run build-lib
 
       - name: Save version
         id: version
@@ -33,18 +33,3 @@ jobs:
 
       - name: Push new version
         run: git push
-      
-      - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-
-      - name: Build the tagged Docker image
-        run: docker build . --file Dockerfile --tag ziermann/nes-palette-editor:${{steps.version.outputs.tag}}
-      
-      - name: Push the tagged Docker image
-        run: docker push ziermann/nes-palette-editor:${{steps.version.outputs.tag}}
-      
-      - name: Build the latest Docker image
-        run: docker build . --file Dockerfile --tag ziermann/nes-palette-editor:latest
-      
-      - name: Push the latest Docker image
-        run: docker push ziermann/nes-palette-editor:latest

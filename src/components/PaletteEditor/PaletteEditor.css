@@ -1,0 +1,30 @@
+:root {
+  font-family: "Roboto", sans-serif;
+}
+
+.indent {
+  margin-left: 1rem;
+}
+
+.colorCell {
+  width: 60px;
+  height: 60px;
+  margin: 5px 10px 5px 0;
+  display: inline-block;
+  border: solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selectedColorCell {
+  transform: scale(1.05);
+}
+
+.download {
+  padding: 1rem 0.75rem;
+  margin: 1rem 0;
+}
+
+.download > h4 {
+  margin: 0;
+}
