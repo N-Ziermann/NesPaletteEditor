@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import COLORS from "../../js/colors";
 import "./PaletteEditor.css";
 import classNames from "classnames";
